@@ -9,5 +9,5 @@ class Grocery extends Model
 {
     use HasFactory;
     protected $table = 'groceries';
-    protected $fillable = ['id','name','email','phone','addess'];
+    protected $fillable = ['id','user_id','name','email','phone','addess'];
 }

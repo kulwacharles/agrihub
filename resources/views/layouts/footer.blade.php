@@ -5,4 +5,3 @@
     <div class="footer-right">
     </div>
   </footer>
-  @livewireScripts

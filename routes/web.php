@@ -9,7 +9,8 @@ use App\Http\Controller\LandController;
 use App\Http\Controller\SupplierController;
 use App\Http\Controller\ProductController;
 use App\Http\Controller\UnitController;
-use App\Http\Controller\OrderController;
+use App\Http\Controller\PurchaseController;
+use App\Http\Controller\SalesController;
 //use ;
 use App\Models\Counter;
 /*
@@ -86,7 +87,6 @@ Route::view('input-order','agrihub.iorder');
 //supplier
 Route::view('manage/group','agrihub.manage-group');
 
-
 Route::get('manage/supplier','SupplierController@index');
 Route::post('supplier/save','SupplierController@store');
 Route::get('supplier/{id}/delete','SupplierController@destroy');
@@ -103,6 +103,16 @@ Route::post('unit/save','UnitController@store');
 Route::post('unit/{id}/edit','UnitController@update');
 Route::get('unit/{id}/delete','UnitController@destroy');
 
-//order management
-Route::get('input/order','OrderController@index');
-Route::post('order','OrderController@store');
+//input order management
+Route::get('input/order','PurchaseController@index');
+Route::post('input/add','PurchaseController@store');
+Route::get('get',"PurchaseController@create");
+Route::post('ajax-posts/{id}/edit','PurchaseController@edit');
+Route::get('input/order/{id}/{product}/{purchase}/delete','PurchaseController@destroy');
+Route::post('input/order/{id}/update','PurchaseController@update');
+
+//output order managemnet
+Route::get('sales','SalesController@index');
+Route::post('sales/add','SalesController@store');
+Route::get('get/sales',"SalesController@create");
+Route::get('sales/{id}/{product}/{sale}/delete','SalesController@destroy');

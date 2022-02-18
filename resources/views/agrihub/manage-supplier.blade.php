@@ -36,7 +36,7 @@
                 <div class="card-header-form">
                   
                     <div class="input-group">
-                      <h4><button class="btn btn-primary"  data-toggle="modal" data-target="#owner">Add Land to user<i class="fa fa-plus"></i></button></h4>
+                      <h4><button class="btn btn-primary"  data-toggle="modal" data-target="#owner">Add Supplier <i class="fa fa-plus"></i></button></h4>
                     </div>
                   
                 </div>
@@ -189,14 +189,14 @@
             <div class="form-row">
               <div class="form-group col-md-6 col-lg-6 col-xl-6">
                 <label for="inputEmail4">TIN</label>
-                <input type="text" name='TIN' class="form-control" id="inputEmail4" placeholder="">
+                <input type="text" name='TIN' class="form-control" id="name" placeholder="">
                     @error('TIN')
                 <div class="text-danger">{{$message }}</div>
                 @enderror
               </div>
               <div class="form-group col-md-6 col-lg-6 col-xl-6">
                 <label for="inputEmail4">Email</label>
-                <input type="text" name='email' class="form-control" id="inputEmail4" placeholder="">
+                <input type="text" name='email' class="form-control" id="email" placeholder="">
                     @error('email')
                 <div class="text-danger">{{$message }}</div>
                 @enderror
@@ -206,7 +206,7 @@
             <div class="form-row">
                <div class="form-group col-md-12 col-lg-12">
     
-                <input type="submit" value="Add" name="save" class="btn btn-block btn-primary">
+                <button  onclick="submit()" name="save" class="btn btn-block btn-primary">
               </div>
             </div>
           </div>
@@ -214,7 +214,7 @@
     </div>
   </div>
 </div>
-<!-- end of the owner model -->
+<!-- end of the supplier modal -->
 <!-- edit modal -->
 @foreach($supply2 as $supply)
 <div class="modal fade" id="owner{{$supply->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

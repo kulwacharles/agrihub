@@ -15,4 +15,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\Models\user');
     }
+    public function orders()
+    {
+        return $this->belongsTo('App\Models\order');
+    }
+    
 }

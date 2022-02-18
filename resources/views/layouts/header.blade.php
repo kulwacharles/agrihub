@@ -8,7 +8,10 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{asset('assets/bundles/prism/prism.css')}}">
+
+ 
   <!-- Custom style CSS -->
   <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
   <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />

@@ -36,7 +36,7 @@
                 <div class="card-header-form">
                   
                     <div class="input-group">
-                      <h4><button class="btn btn-primary"  data-toggle="modal" data-target="#owner">Add new product<i class="fa fa-plus"></i></button></h4>
+                      <h4><button class="btn btn-primary"  data-toggle="modal" data-target="#product">Add new product<i class="fa fa-plus"></i></button></h4>
                     </div>
                   
                 </div>
@@ -46,6 +46,7 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-12 col-sm-12 col-lg-10 col-xl-10 col-md-10">
+                  <div class="text text-danger" id="result">erro sana</div>
                   <div class="table-responsive">
                     @if(count($product)>0)
                         <table class="table table-striped table-md">
@@ -78,7 +79,7 @@
                               <div class="row">
                                 <div class="col-lg-12 col-sm-12 col-md-12">
                             
-                              <a href="#"   data-toggle="modal" data-target="#owner{{$product->id}}"><i class="fas fa-edit"></i></a>
+                              <a href="#"   data-toggle="modal" data-target="#product{{$product->id}}"><i class="fas fa-edit"></i></a>
 
                               <a href="#"  data-toggle="modal" data-target="#del{{$product->id}}"><i class="fas fa-trash-alt"></i></a>
 
@@ -151,10 +152,8 @@
 
 <!-- end of the delete model -->
 
-
-  <!--create owner modal -->
-  <div class="modal fade" id="owner" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+  <!--create product modal -->
+  <div class="modal fade" id="product" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -169,57 +168,49 @@
             <div class="form-row">
               <div class="form-group col-md-6 col-lg-6 col-xl-6">
                 <label for="inputEmail4">Product Name</label>
-                <input type="text" name='name' class="form-control" id="inputEmail4" placeholder="">
+                <input type="text" name='name' value="{{old('name')}}" class="form-control" id="inputEmail4" placeholder="">
                     @error('name')
-                <div class="text-danger">{{$message }}</div>
+                <div class="text-danger" value="{{$message}}" id="error">{{$message }}</div>
                 @enderror
               </div>
               <div class="form-group col-md-6 col-lg-6 col-xl-6">
                 <label for="inputEmail4">Code</label>
-                <input type="text" name='code' class="form-control" id="inputEmail4" placeholder="">
+                <input type="text" name='code' value="{{old('code')}}" class="form-control" id="inputEmail4" placeholder="">
                     @error('code')
-                <div class="text-danger">{{$message }}</div>
+                <div class="text-danger" value="{{$message}}" id="error">{{$message }}</div>
                 @enderror
               </div>
             </div>
             <div class="form-row">
             <div class="form-group col-md-6 col-lg-6 col-xl-6">
               <label for="inputEmail4">Buying Price</label>
-              <input type="text" name='buyprice' class="form-control" id="inputEmail4" placeholder="">
+              <input type="text" name='buyprice' value="{{old('buyprice')}}" class="form-control" id="inputEmail4" placeholder="">
                   @error('buyprice')
-              <div class="text-danger">{{$message }}</div>
+              <div class="text-danger" value="{{$message}}" id="error">{{$message }}</div>
               @enderror
             </div>
             <div class="form-group col-md-6 col-lg-6 col-xl-6">
               <label for="inputEmail4">Selling Price</label>
-              <input type="text" name='sellprice' class="form-control" id="inputEmail4" placeholder="">
+              <input type="text" name='sellprice' value="{{old('sellprice')}}" class="form-control" id="inputEmail4" placeholder="">
                   @error('sellprice')
-              <div class="text-danger">{{$message }}</div>
+              <div class="text-danger" value="{{$message}}" id="error">{{$message }}</div>
               @enderror
             </div>
             </div>
             <div class="form-row">
-            
               <div class="form-group col-md-6 col-lg-6 col-xl-6">
                 <label for="inputEmail4">Unit</label>
-                <select class="form-control" name='unit'>
-                  <option>Select unit</option>
-                  @if(count($unit)>0)
-                  @foreach($unit as $unit)
-                    <option value='{{$unit->name}}'>{{$unit->name}}</option>
-                  @endforeach
-                  @endif
-                </select>
-
+               <input type="text" value="{{old('unit')}}"  name="unit" class="form-control">
+    
                     @error('unit')
-                <div class="text-danger">{{$message }}</div>
+                <div class="text-danger" value="{{$message}}" id="error">{{$message }}</div>
                 @enderror
               </div>
               <div class="form-group col-md-6 col-lg-6 col-xl-6">
                 <label for="inputEmail4">Quantity Balance</label>
-                <input type="text" name='balance' class="form-control" id="inputEmail4" placeholder="">
+                <input type="text" name='balance' value="{{old('balance')}}" class="form-control" id="inputEmail4" placeholder="">
                     @error('balance')
-                <div class="text-danger">{{$message }}</div>
+                <div class="text-danger" value="{{$message}}" id="error">{{$message }}</div>
                 @enderror
               </div>
               </div>
@@ -285,14 +276,7 @@ aria-hidden="true">
           </div>
           <div class="form-group col-md-6 col-lg-6 col-xl-6">
             <label for="inputEmail4">Unit</label>
-            <select class="form-control" name='unit'>
-              <option>Select unit</option>
-              @if(count($unit2)>0)
-              @foreach($unit2 as $unit)
-                <option value='{{$unit->name}}'>{{$unit->name}}</option>
-              @endforeach
-              @endif
-            </select>
+           <input type="text" value="{{$product->unit}}" name="unit" class="form-control">
 
                 @error('unit')
             <div class="text-danger">{{$message }}</div>
@@ -318,6 +302,26 @@ aria-hidden="true">
   </div>
 </div>
 </div>
+<script>
+
+  var error;
+  error= document.getElementById('error').innerHTML;
+  //error=getElementById("error").innerHTML;
+  if((error.length)>0)
+  {
+    $(document).ready(function()
+    {
+      
+    $("#product").modal("show");
+    });
+ 
+    
+    //document.getElementById('result').innerHTML=error;
+  }
+ 
+ 
+  
+</script>
 @endforeach
 <!-- end of the edit modal -->
 @endsection
