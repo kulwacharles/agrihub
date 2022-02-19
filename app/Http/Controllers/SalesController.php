@@ -119,7 +119,12 @@ class SalesController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_id=auth()->user()->id;
+
+        $product=Product::where([['user_id',"=",$user_id],['id',"=",$id]])->get();
+          #Display Success Message in Blade File
+          $arr = array('msg' => 'Purchased product data saved', 'status' => true,"product"=>$product);
+        return Response()->json($arr);
     }
 
     /**
@@ -144,7 +149,7 @@ class SalesController extends Controller
     {
         $user_id=auth()->user()->id;
 
-        $update=order::where('user_id', '=', $id)->update(['status' => 'confirmed']);
+        $update=Sale::where('user_id', '=', $id)->update(['status' => 'confirmed']);
           #Display Success Message in Blade File
           $arr = array('msg' => 'Purchased product data saved', 'status' => true);
         return Response()->json($arr);

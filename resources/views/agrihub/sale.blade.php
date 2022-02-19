@@ -15,7 +15,7 @@
          <div class="row">
             <div class="col-md-2 col-lg-2 col-sm-2">
                <label for="Price">Farmer Name:</label>
-               <select class="form-control" id='farmer'  name='supply'>
+               <select class="form-control select2" id='farmer'  name='farmer'>
                   <option selected="selected" disabled="disabled">Select Farmer</option>
                   @if(count($farmer)>0)
                      @foreach($farmer as $farmers)
@@ -27,7 +27,8 @@
             </div>
             <div class="col-md-2 col-lg-2 col-sm-2">
                <label for="Name">Select Product :</label>
-               <select class="form-control" id='product'  >
+
+               <select class="form-control select2" id='product' onchange="data(this.value)" name="product">
                   <option selected="selected" disabled="disabled">Select product</option>
                   @if(count($product)>0)
                      @foreach($product as $prod)
@@ -44,7 +45,7 @@
                <input type="text" class="form-control" id="price" placeholder="Enter Amount" required>
             </div>
             <div class="col-md-2 col-lg-2 col-sm-2">
-               <label for="Quantity">Quantity:</label>
+               <label for="Quantity">Quantity:<p id="priced"></p></label>
                <input type="number" class="form-control" id="amount" placeholder="Enter Amount" required>
             </div>
             <div class="col-md-2 col-lg-2 col-sm-2">
@@ -209,8 +210,10 @@
                      $('#msg_div').hide();
                   }, 4000);
                   
-               
+                  //swal("Good job!", "You clicked the button!", "success");
+
                   fetch_data();
+                  
                },
                });
  
@@ -266,7 +269,7 @@
          $.ajax(
                         {
                           
-                           url: "order/{{Auth::user()->id}}/update", //Define Post URL
+                           url: "sale/{{Auth::user()->id}}/update", //Define Post URL
                               type: "POST",
                               data: {
                                  "_token": "{{ csrf_token() }}",
@@ -291,13 +294,17 @@
                      );
                      
       }
-//product price function
-              $('#product').on('change', function() {
-              var selectedOption = $(this).find('option:selected');
+// //product price function
+//               $('#product').on('change', function() {
+//               var selectedOption = $(this).find('option:selected');
 
-              // $('#weight').val(selectedOption[0].dataset.weight);
-               $('#price').val(selectedOption[0].dataset.price);
-});
+//               // $('#weight').val(selectedOption[0].dataset.weight);
+//                $('#price').val(selectedOption[0].dataset.price);
+              
+
+// });
+
+
            
    
 </script>

@@ -10,4 +10,10 @@
   <script src="{{url('assets/bundles/prism/prism.js')}}"></script>
   <!-- Custom JS File -->
   <script src="{{url('assets/js/custom.js')}}"></script>
+  <script src="{{url('assets/bundles/select2/dist/js/select2.full.min.js')}}"></script>
+  <script src="{{url('assets/bundles/jquery-selectric/jquery.selectric.min.js"')}}"></script>
+ 
+  <script src="{{url('assets/bundles/sweetalert/sweetalert.min.js')}}"></script>
+  <script src="{{url('assets/js/page/sweetalert.js')}}"></script>
+ 
   

@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
+
 use App\Http\Controller\FarmerController;
 use App\Http\Controller\GroupController;
 use App\Http\Controller\MemberController;
@@ -24,21 +24,8 @@ use App\Models\Counter;
 |
 */
 
-
-Route::get('/test/login',[PagesController::class, 'login']);
-
-Route::post('/test/signin',[PagesController::class, 'signin']);
-/*
-Route::get('/about',[PagesController::class, 'about']);
-Route::resource('post', 'PostController');
-*/
-/*
-Route::get('/about', function () {
-    return view('about');
-});
-*/
 Auth::routes();
-Route::get('/',[App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/',"HomeController@index");
 
 /*
 Route::group(['prefix'=>'farmer'],function()
@@ -46,7 +33,7 @@ Route::group(['prefix'=>'farmer'],function()
     Route::get('register','FarmerController@register');
 });
 */
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home',"HomeController@index" );
 Route::get('farmer','FarmerController@index');
 //Route::post('save','FarmerController@store');
 Route::get('farmer/{id}/edit','FarmerController@edit');
@@ -63,13 +50,7 @@ Route::get('group/{id}/delete','GroupController@destroy');
 
 Route::get('farmer/group/{id}/add','MemberController@index');
 Route::get('farmer/group/','MemberController@show');
-Route::get('/testform', function()
-{
-    $list=Farmer::all();
-    //print_r($list);
-    return view('agrihub.manage-asset')->with('list',$list);
 
-});
 route::post('save','MemberController@store');
 
 route::get('land','LandController@index');
@@ -97,22 +78,18 @@ Route::get('manage/product','ProductController@index');
 Route::post('product/save','ProductController@store');
 Route::post('product/{id}/edit','ProductController@update');
 Route::get('product/{id}/delete','ProductController@destroy');
-//unit
-Route::get('manage/unit','UnitController@index');
-Route::post('unit/save','UnitController@store');
-Route::post('unit/{id}/edit','UnitController@update');
-Route::get('unit/{id}/delete','UnitController@destroy');
 
 //input order management
-Route::get('input/order','PurchaseController@index');
+Route::get('purchase/','PurchaseController@index');
 Route::post('input/add','PurchaseController@store');
 Route::get('get',"PurchaseController@create");
 Route::post('ajax-posts/{id}/edit','PurchaseController@edit');
 Route::get('input/order/{id}/{product}/{purchase}/delete','PurchaseController@destroy');
 Route::post('input/order/{id}/update','PurchaseController@update');
-
+Route::get('purchase/{id}/product','PurchaseController@show');
 //output order managemnet
 Route::get('sales','SalesController@index');
 Route::post('sales/add','SalesController@store');
 Route::get('get/sales',"SalesController@create");
 Route::get('sales/{id}/{product}/{sale}/delete','SalesController@destroy');
+Route::get('sales/{id}/product','SalesController@show');

@@ -15,7 +15,7 @@
          <div class="row">
             <div class="col-md-2 col-lg-2 col-sm-2">
                <label for="Price">Supplier Name:</label>
-               <select class="form-control" id='supply'  name='supply'>
+               <select class="form-control select2" id='supply'  name='supply'>
                   <option selected="selected" disabled="disabled">Select Supplier</option>
                   @if(count($supply)>0)
                      @foreach($supply as $sup)
@@ -28,11 +28,10 @@
             </div>
             <div class="col-md-2 col-lg-2 col-sm-2">
                <label for="Name">Select Product :</label>
-               <select class="form-control" id='product'  name='product'>
+               <select class="form-control select2" id='product' onchange="data(this.value)"  name='product'>
                   <option selected="selected" disabled="disabled">Please Select product</option>
                   @if(count($product)>0)
                      @foreach($product as $prod)
-                      
                         <option  data-price="{{$prod->buyprice}}" value='{{$prod->id}}'>{{$prod->name}}</option>
                      @endforeach
                   @endif
@@ -291,14 +290,37 @@
                      );
                      
       }
-//product price function
-              $('#product').on('change', function() {
-              var selectedOption = $(this).find('option:selected');
-
-              // $('#weight').val(selectedOption[0].dataset.weight);
-               $('#price').val(selectedOption[0].dataset.price);
-});
-           
+      function data(price)
+{
+   event.preventDefault();
+   $.ajax(
+                        {
+                          
+                           url: "purchase/"+price+"/product", //Define Post URL
+                              type: "get",
+                              data: {
+                                 "_token": "{{ csrf_token() }}",
+   
+                              },
+                              //Display Response Success Message
+                              cache: false,
+                           success: function(response) 
+                           {
+                              $.each(response.product, function(d, products)
+                                  {
+                                 
+                                 document.getElementById("price").value =products.buyprice;
+                    
+                                    }); 
+                                 
+                             
+                              
+                           },
+                        }
+                        
+                     );
+   
+}         
               
 </script>
 @endsection

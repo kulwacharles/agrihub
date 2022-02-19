@@ -127,8 +127,14 @@ class PurchaseController extends Controller
      */
     public function show($id)
     {
-        //
+        $user_id=auth()->user()->id;
+
+        $product=Product::where([['user_id',"=",$user_id],['id',"=",$id]])->get();
+          #Display Success Message in Blade File
+          $arr = array('msg' => 'Purchased product data saved', 'status' => true,"product"=>$product);
+        return Response()->json($arr);
     }
+
 
     /**
      * Show the form for editing the specified resource.

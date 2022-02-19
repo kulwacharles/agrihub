@@ -31,9 +31,9 @@
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="{{url('manage/supplier')}}">Manage Supplier</a></li>
             <li><a class="nav-link" href="{{url('manage/product')}}">Manage Product</a></li>
-            <li><a class="nav-link" href="{{url('manage/unit')}}">Manage Unit</a></li>
-            <li><a class="nav-link" href="{{url('input/order')}}">Order Input</a></li>
-            <li><a class="nav-link" href="email-read.html">Sell Input</a></li>
+
+            <li><a class="nav-link" href="{{url('purchase')}}">Purchase</a></li>
+            <li><a class="nav-link" href="{{('sales')}}">Sell Input</a></li>
            
           </ul>
         </li>
